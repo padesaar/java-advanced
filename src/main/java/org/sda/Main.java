@@ -1,9 +1,8 @@
 package org.sda;
 
-import org.sda.model.Dog;
-import org.sda.model.Passenger;
-import org.sda.model.Person;
-import org.sda.model.PrivatePassenger;
+import org.sda.model.*;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
@@ -32,11 +31,11 @@ public class Main {
         System.out.println(dog.getWeight());
 
         //INHERITENCE
-        Passenger passenger = new Passenger("CARD", "Pärnu");
+        Passenger passenger = new Passenger(PaymentType.CARD, "Pärnu");
         passenger.setEmail("passenger@gmail.com"); //access from Person class - mother class
 
 
-        PrivatePassenger privatePassenger = new PrivatePassenger("CARD", "Tallinn", true, "12314541321");
+        PrivatePassenger privatePassenger = new PrivatePassenger(PaymentType.CARD, "Tallinn", true, "12314541321");
         privatePassenger.setPersonalIDCode("232648264728"); //access PrivatePassenger's fields
         privatePassenger.setDestinationAddress("Tartu");//access Passenger's field
         privatePassenger.setPhoneNumber("+3729383822"); //access Person's fields
@@ -53,7 +52,7 @@ public class Main {
 
         //polymorphism you can create child object from the parent
         Person person3 = new Person(12345L, "Pärnu");
-        Person person4 = new Passenger("CARD", "Viljandi");
+        Person person4 = new Passenger(PaymentType.CARD, "Viljandi");
         System.out.println(person3.toString());
         System.out.println(person4.toString());
 
@@ -71,12 +70,33 @@ public class Main {
         passenger1.getHiddenAlive();
 
         //passing parameters
-        Passenger passenger2 = new Passenger(12345L, "Tallinn", "CASH", "Tartu");
+        Passenger passenger2 = new Passenger(12345L, "Tallinn", PaymentType.CARD, "Tartu");
 
         printPersonAddress(passenger2);
         printPersonAddressWithPrefix("Person", passenger2);
 
+
+        //create composition - exercise
+        Muzzle muzzle = new Muzzle();
+        // How to use a Dog object to show all attributes of Muzzle
+        muzzle.setId(8905L);
+        muzzle.setNoiseRange(10);
+        muzzle.setTooNoisy(true);
+
+        Dog dog1 = new Dog(true, "Dober");
+        dog1.setMuzzle(muzzle);
+
+        System.out.println(dog1.getMuzzle().toString());
+
+        //enums are predefined values
+        System.out.println(PaymentType.CARD);
+        System.out.println(Arrays.toString(PaymentType.values())); //prints all enum values
+
+        System.out.println(PaymentType.BANK_LINK.getValue()); //prints the value of enum number 5
+
     }
+
+
 
     private static void printPersonAddress(Person person) { //did this to pass the address info from passenger to passenger through person getAddress
         System.out.println(person.getAddress());

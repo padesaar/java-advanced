@@ -1,4 +1,4 @@
-package org.sda.model;
+package org.sda.homework;
 
 public class Shape {
    private float radius; // it's actually 0.5 width

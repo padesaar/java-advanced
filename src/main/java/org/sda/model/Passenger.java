@@ -7,29 +7,29 @@ package org.sda.model;
  */
 
 public class Passenger extends Person {
-    private String paymentType;
+    private PaymentType paymentType;
     private String destinationAddress;
 
     public Passenger() {
 
     }
 
-    public Passenger(String paymentType, String destinationAddress) {
+    public Passenger(PaymentType paymentType, String destinationAddress) {
         this.paymentType = paymentType;
         this.destinationAddress = destinationAddress;
     }
 
-    public Passenger(Long id, String address, String paymentType, String destinationAddress) {
+    public Passenger(Long id, String address, PaymentType paymentType, String destinationAddress) {
         super(id, address); //super mean you refer to parent class
         this.paymentType = paymentType;
         this.destinationAddress = destinationAddress;
     }
 
-    public String getPaymentType() {
+    public PaymentType getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(String paymentType) {
+    public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 
