@@ -57,14 +57,32 @@ public class Main {
         System.out.println(person3.toString());
         System.out.println(person4.toString());
 
+        //protected method
+        //passenger. cant find isAlive - it's protected
+        //person3. cant find setIsAlive - it's protected
+
         //calling parent methods
         Passenger passenger1 = new Passenger();
         passenger1.setAddress("Tallinn"); // Person.address
         passenger1.setDestinationAddress("Tartu"); //passenger.destinationAddress
         System.out.println(passenger1.getAddresses());
 
+        //calling parent's hidden field
+        passenger1.getHiddenAlive();
 
+        //passing parameters
+        Passenger passenger2 = new Passenger(12345L, "Tallinn", "CASH", "Tartu");
 
+        printPersonAddress(passenger2);
+        printPersonAddressWithPrefix("Person", passenger2);
 
+    }
+
+    private static void printPersonAddress(Person person) { //did this to pass the address info from passenger to passenger through person getAddress
+        System.out.println(person.getAddress());
+    }
+
+    private static void printPersonAddressWithPrefix(String prefix, Object object) {
+        System.out.println(prefix + object);
     }
 }

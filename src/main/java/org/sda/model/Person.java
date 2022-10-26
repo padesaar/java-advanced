@@ -18,6 +18,9 @@ public class Person {
     private String phoneNumber; //string sest number algab + märgiga
     private String address;
 
+
+    protected boolean isAlive;
+
     //all arguments' constructor, all fields in one line between the braces
     public Person(Long id, String firstname, String lastname, String email, String phoneNumber, String address) {
         this.id = id;
@@ -91,6 +94,14 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    protected boolean isAlive() {
+        return isAlive;
+    }
+
+    protected void setAlive(boolean alive) {
+        isAlive = alive;
     }
 
     @Override
