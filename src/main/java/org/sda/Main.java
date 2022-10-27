@@ -94,6 +94,21 @@ public class Main {
 
         System.out.println(PaymentType.BANK_LINK.getValue()); //prints the value of enum number 5
 
+        //looping enums
+        for(PaymentType paymentType: PaymentType.values()){
+            System.out.println(paymentType.name());
+        }
+        System.out.println(PaymentType.MOBILE_BANKING.toString());
+
+        // Enum exercise Planets
+        System.out.println(">>>>>>>>>>>PLANETS<<<<<<<<<<");
+        System.out.println(Planets.JUPITER.toString());
+        System.out.println("Distance of " + Planets.JUPITER.name() + " from Earth" + Planets.JUPITER.distanceFromEarth());
+        System.out.println("-----------");
+        System.out.println(Planets.MARS.toString());
+        System.out.println("Distance of " + Planets.MARS.name() + " from Earth" + Planets.MARS.distanceFromEarth());
+
+
     }
 
 
