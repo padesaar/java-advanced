@@ -109,6 +109,7 @@ public class Main {
         System.out.println("Distance of " + Planets.MARS.name() + " from Earth" + Planets.MARS.distanceFromEarth());
 
 
+
     }
 
 

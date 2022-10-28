@@ -1,47 +1,42 @@
 package org.sda.homework;
 
+/**
+ *
+ *  Create a Shape class.
+ *  a) Add fields, create constructor, getters and setters.
+ *  b) Create classes Rectangle and Circle. Both of them should inherit class Shape. (getter and setter)
+ *  c) Which fields and methods are common? (override)
+ *  @author Kätlin Padesaar-Korela
+ *
+ */
+
 public class Shape {
-   private float radius; // it's actually 0.5 width
-    final float Pii = 3.14f;
-    private float width;
-    private float height;
+        private String name;
+        private float area;
+
+        public Shape(String name, float area) {
+                this.name = name;
+                this.area = area;
+        }
+
+        public String getName() {
+                return name;
+        }
+
+        public void setName(String name) {
+                this.name = name;
+        }
+
+        public float getArea() {
+                return area;
+        }
+
+        public void setArea(float area) {
+                this.area = area;
+        }
 
 
-    public Shape() {
 
-    }
 
-    public Shape(float radius, float width, float height) {
-        this.radius = radius;
-        this.width = width;
-        this.height = height;
-    }
 
-    public float getRadius() {
-        return radius;
-    }
-
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
-
-    public float getPii() {
-        return Pii;
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-    }
 }
