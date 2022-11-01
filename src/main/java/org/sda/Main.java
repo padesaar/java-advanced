@@ -1,5 +1,8 @@
 package org.sda;
 
+import org.sda.abstracts.Food;
+import org.sda.abstracts.Fruit;
+import org.sda.abstracts.Veggie;
 import org.sda.exceptions.PersonNotFoundException;
 import org.sda.models.Person;
 import org.sda.services.PersonService;
@@ -100,6 +103,17 @@ public class Main {
             System.out.println(e.getLocalizedMessage());
         }
 
+        //ABSTRACT CLASS
+        //cannot be instantiated - cannot create an object for abstract class
+        //cannot put person person = new car
+
+        Fruit fruit = new Fruit("Red");
+        fruit.eat();
+        Veggie veggie = new Veggie("Green");
+        Food food = veggie;
+        food.eat();
+
+
     }
 
         private static void displayNumber(){
@@ -115,6 +129,7 @@ public class Main {
         }
 
         }
+
 
 
 }
