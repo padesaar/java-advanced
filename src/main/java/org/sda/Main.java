@@ -2,6 +2,7 @@ package org.sda;
 
 import org.sda.generics.*;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -187,7 +188,37 @@ public class Main {
         //    public static void main(String[] args) {
         //        @SuppressWarnings("unchecked") -> you have to put it here
 
+        //INPUT-OUTPUT
+        //a File object represents a file
+        //it can be created passing the path to it's constructor
+        //path can be either absolute or relative
+        //absolute - full path of the file
+        //relative - only file name, but it should be in your project
 
+        File absoluteFile = new File("C:\\Users\\37253\\java-advanced\\src\\main\\resources\\myText.txt");
+        File relativeFile = new File("myText.txt");
 
-}
-}
+        try{
+            FileReader fileReader = new FileReader(absoluteFile);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(absoluteFile));
+            String fileLine; //line of text from the file
+
+            while((fileLine = bufferedReader.readLine()) != null) {
+                System.out.println(fileLine);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //File writing
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absoluteFile, true));
+            String fileLine = "\n I can write and error-less Java code :D";
+            bufferedWriter.write(fileLine);
+
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+        }
+    }
