@@ -78,10 +78,10 @@ public class Main {
 
             if (!shoppingBag.contains(addItem)) {
                 shoppingBag.add(addItem);
-                System.out.println("" + addItem +  "added to the bag. Do you want to add more items?");
+                System.out.println("" + addItem +  "added to the bag. Do you want to add more items? (true/false)");
 
             } else {
-                System.out.println("The item already exists, do you want to add other item?");
+                System.out.println("The item already exists, do you want to add other item? (true/false)");
             }
             isAdd = SCANNER.nextBoolean();
         }
@@ -92,15 +92,15 @@ public class Main {
         boolean isDelete = true;
 
         while (isDelete) {
-            System.out.println("Enter item name to be deleteed to the bag: ");
+            System.out.println("Enter item name to be deleted to the bag: ");
             String deleteItem = SCANNER.next();
 
             if (shoppingBag.contains(deleteItem)) {
                 shoppingBag.remove(deleteItem);
-                System.out.println("" + deleteItem +  "deleted to the bag. Do you want to delete more items?");
+                System.out.println("" + deleteItem +  "deleted to the bag. Do you want to delete more items? (true/false");
 
             } else {
-                System.out.println("The item not exists. Do you want to delete another item?");
+                System.out.println("The item not exists. Do you want to delete another item? (true/false)");
             }
             isDelete = SCANNER.nextBoolean();
         }
@@ -112,7 +112,7 @@ public class Main {
 
         for(int i = 0; i < shoppingBag.size(); i++) {
             String thisItem = shoppingBag.get(i);
-            String nextItem = (i + 1) == (shoppingBag.size() -1) ? shoppingBag.get(i+1) : "";
+            String nextItem = (i + 1) <= (shoppingBag.size() -1) ? shoppingBag.get(i+1) : "";
 
             if(thisItem.startsWith("m") || thisItem.startsWith("M") || nextItem.startsWith("m") || nextItem.startsWith("M")) {
                 System.out.println(counter + ". " + thisItem);
@@ -120,6 +120,9 @@ public class Main {
             }
         }
 
+        if(counter == 1) {
+            System.out.println("Your shopping bag is empty or doesn't contain the expected items. No item to display");
+        }
 
     }
 }
