@@ -3,9 +3,7 @@ package org.sda;
 import org.sda.generics.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -98,8 +96,87 @@ public class Main {
         }
 
         //exercise
+        //in separate branch
 
+        //Set
+        //can't contain duplicates
+        Set<String> countrySet = new HashSet<>(); //non-sorted, randomly stored
+        countrySet.add("Eesti");
+        countrySet.add("Saksamaa");
+        countrySet.add("Poola");
+        countrySet.add("Rootsi");
+        countrySet.add("EESTI"); //case-sensitive, so it can be added
+       // countrySet.add("Eesti"); - duplicates not allowed
 
+        //in Set if you want to get the value, you have to use for loop
+        for(String country: countrySet){
+        System.out.println(country);
+        //prints in different järjekord because items are based on hash value - like memory value
 
     }
+
+        //Set exercise
+        //use scanner
+        //ask whether user wants to add new color , if false - display whole set to the user
+        //and then ask which color you want to delete
+        //then when he wants to delete more, til he wants
+        //see the list exercise
+        //feature/set-exercise from initial commit
+        //sort the set - TreeSet
+
+        //before sorting
+        System.out.println("Before sorting:" + countrySet);
+        TreeSet<String> countryTreeSet = new TreeSet<>(countrySet);
+        //stored as sorted
+        System.out.println("After sorting:" + countryTreeSet); //alphabetical order
+
+
+        //Map
+        //map is an object that maps keys to values.
+        //map cannot contain duplicate keys: each key can map only map at most to one value
+        //values  can be string, numbers..
+        //getKey
+        //getValue
+        //map we dont use add, we use put
+
+        //Map-exercise
+        Map<String,String> fullName = new HashMap<>(); //not stored as sorted
+        fullName.put("Kätlin", "Padesaar");
+        fullName.put("Jason", "Statham");
+        fullName.put("Jim", "Carrey");
+        //fullName.put("Jim", "Mahoney"); -> duplicate key not allowed
+        System.out.println(fullName);
+
+        System.out.println(fullName.get("Jim"));
+        System.out.println(fullName.remove("Kätlin"));
+        System.out.println(fullName);
+
+        Map<String, Integer> ageMap = new HashMap<>();
+        ageMap.put("Jim", 65);
+        ageMap.put("Jason", 55);
+        ageMap.put("Kätlin", 32);
+
+        //map of List
+        Map<String, List<String>> friendsMap = new HashMap<>();
+        List<String> jimFriends = List.of("Simon", "Bruce");
+        List<String> jasonFriends = List.of("Simon", "Bruce");
+        List<String> katlinFriends = List.of("Simon", "Bruce");
+
+        friendsMap.put("Jim",jimFriends);
+        friendsMap.put("Jason", jasonFriends);
+        friendsMap.put("Kätlin", katlinFriends);
+
+        //map of map
+        Map<String, Map<String, String>> detailMap = new HashMap<>();
+        Map<String, String> jimInfoMap = new HashMap<>();
+        jimInfoMap.put("age", "45");
+        jimInfoMap.put("birthplace", "USA");
+        jimInfoMap.put("phone", "3258983525");
+
+        detailMap.put("Jim", jimInfoMap);
+        //and so on for the others as well
+
+
+
+}
 }
