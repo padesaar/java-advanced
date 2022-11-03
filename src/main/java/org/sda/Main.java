@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        @SuppressWarnings("unchecked")
 
         //GENERIC TYPES
         // it a generic type class of interface that is parametrized over types
@@ -175,6 +176,16 @@ public class Main {
 
         detailMap.put("Jim", jimInfoMap);
         //and so on for the others as well
+
+
+        //ANNOTATIONS
+        //inform the compiler about code structure
+        //tools can process annot. to generate code for ex. @override
+        //main syntax is @ and then type annot. name
+        //some annot. are parametrized, eg Warnings("unchecked")
+
+        //    public static void main(String[] args) {
+        //        @SuppressWarnings("unchecked") -> you have to put it here
 
 
 
