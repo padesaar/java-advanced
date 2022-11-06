@@ -27,7 +27,7 @@ public class ColorSet {
             colorSet.add(scanner.next());
             System.out.println("" + colorSet + " added to the set. Do you want to add more colors? (true/false)");
             isAdd = scanner.nextBoolean();
-            }
+        }
         System.out.println("Colorset before sorting: " + colorSet);
 
         //delete colors from the set
@@ -35,7 +35,7 @@ public class ColorSet {
 
         while (isDelete) {
             System.out.println("Do you want to delete any colors? true/false");
-            if(scanner.nextBoolean()) {
+            if (scanner.nextBoolean()) {
                 System.out.println("Enter a color you want to delete: ");
             } else {
                 break;
@@ -45,7 +45,7 @@ public class ColorSet {
 
             if (colorSet.contains(deleteColor)) {
                 colorSet.remove(deleteColor);
-                System.out.println("" + deleteColor +  " deleted from the set. Do you want to delete more colors? (true/false");
+                System.out.println("" + deleteColor + " deleted from the set. Do you want to delete more colors? (true/false");
 
             } else {
                 System.out.println("The color does not exists. Do you want to delete another color? (true/false)");
@@ -62,7 +62,7 @@ public class ColorSet {
 
     }
 
-        }
+}
 
 
 
