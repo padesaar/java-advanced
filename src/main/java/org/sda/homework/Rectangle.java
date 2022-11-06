@@ -44,4 +44,9 @@ public class Rectangle extends Shape {
         return super.getArea() / (width * height);
 }
 
+    @Override
+    public float getPerimeter() {
+        return (2* getHeight()) + (2* getWidth());
+    }
+
 }

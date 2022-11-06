@@ -21,5 +21,10 @@ public class MainShapeHomework {
         System.out.println(circle1.getArea());
         System.out.println(circle1.getName());
         System.out.println(circle1.toString());
+
+        System.out.println(circle1.getPerimeter());
+
+        Rectangle rectangle1 = new Rectangle("Rectangle", 400f, 14f, 15f);
+        System.out.println(rectangle1.getPerimeter());
     }
 }

@@ -10,9 +10,18 @@ package org.sda.homework;
  *
  */
 
-public class Shape {
+public abstract class Shape {
         private String name;
         private float area;
+        private float perimeter;
+
+        public float getPerimeter() {
+                return perimeter;
+        }
+
+        public void setPerimeter(float perimeter) {
+                this.perimeter = perimeter;
+        }
 
         public Shape(String name, float area) {
                 this.name = name;

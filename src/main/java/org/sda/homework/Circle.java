@@ -39,6 +39,9 @@ public class Circle extends Shape {
         return super.getArea() / (radius*radius) / getPii();
     }
 
-
+    @Override
+    public float getPerimeter() {
+        return 2* getPii() * getRadius();
+    }
 }
 
