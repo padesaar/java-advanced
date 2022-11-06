@@ -1,5 +1,12 @@
 package org.sda.generics.homework;
 
+/**
+ * Create a Person class that will implement a Comparable interface.
+ * Person class should implement compareTo method that will verify if one person is taller that another.
+ *
+ * @author Kätlin Padesaar-Korela
+ */
+
 public class Person implements Comparable2<Person> {
 
     private int height;

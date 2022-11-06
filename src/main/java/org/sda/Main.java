@@ -63,7 +63,7 @@ public class Main {
         //List
 
         List<String> animalList = new ArrayList<>();
-        //add item to lisyt
+        //add item to list
         animalList.add("Lion"); //index 0
         animalList.add("Tiger"); //1
         animalList.add("Rabbit"); //2
@@ -226,5 +226,9 @@ public class Main {
         Person person2 = new Person (170);
         System.out.println("Person 1 is taller than person 2: " + person1.isTaller(person2));
         System.out.println(person1.compareTo(person2));
+
+
+
+
         }
     }
