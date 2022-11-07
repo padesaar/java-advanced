@@ -5,7 +5,15 @@ import org.sda.generics.homework.Person;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
+
+import static java.lang.System.in;
 
 public class Main {
     public static void main(String[] args) {
@@ -214,21 +222,88 @@ public class Main {
         //File writing
 
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absoluteFile, true));
+            FileWriter fileWriter = new FileWriter(absoluteFile, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             String fileLine = "\n I can write and error-less Java code :D";
             bufferedWriter.write(fileLine);
+            bufferedWriter.flush();
+            bufferedWriter.write(fileLine);
+            bufferedWriter.close();
 
     } catch (IOException e) {
         throw new RuntimeException(e);
     }
         //Homework (Generics, comparable)
-        Person person1 = new Person(189);
-        Person person2 = new Person (170);
-        System.out.println("Person 1 is taller than person 2: " + person1.isTaller(person2));
-        System.out.println(person1.compareTo(person2));
+      //  Person person1 = new Person(189);
+        //Person person2 = new Person (170);
+        //System.out.println("Person 1 is taller than person 2: " + person1.isTaller(person2));
+        //System.out.println(person1.compareTo(person2));
 
 
+        //I/O Serializable
+        //you should be able to write/read object
+        //convert some object to the string
+        //de-serilization - create an object from string
+        //serializable is an interface that is already in java
 
+        //old school way before java 8
+        String fileName = "file.ser";
 
+        try{
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream outputStream = new ObjectOutputStream(file);
+
+            outputStream.writeObject(fruit);
+            outputStream.close(); //close the writing
+            file.close(); //close the file
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+        //deserialized
+
+        Fruit deserializedFruit;
+
+        try{
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            deserializedFruit = (Fruit) in.readObject();
+
+            in.close();
+            file.close();
+            System.out.println(deserializedFruit.toString());
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        // new I/O //came after java 8
+        Path absolutePath = Paths.get(("C:\\Users\\37253\\java-advanced\\src\\main\\resources\\myText.txt"));
+        Path relativePath = Paths.get("myText.txt");
+
+        //file reading
+        //UTF-8 is character encoding standard, for reading/writing the file
+        try{
+            List<String> fileLines = Files.readAllLines(absolutePath, StandardCharsets.UTF_8);
+
+            //just to print the file which was read above
+            for(String fileLine: fileLines){
+                System.out.println(fileLine);
+            }
+
+            //file-writing
+            List<String> fileLinesToWrite = List.of("I love Java", "Estonia is my country");
+            Files.write(absolutePath, fileLinesToWrite, StandardOpenOption.APPEND);
+            //append - this adds it to the present file
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //Files.createDirectory(path)
+        //Files.isDirectory(relativePath)
+
+        //CONCURRENCY in JAVA
+        //Lambda expression - representation of implementation
+
+
+
+    }
     }
