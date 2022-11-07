@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Create a set consisting of colors - given from the user
@@ -34,7 +35,7 @@ public class ColorSet {
         boolean isDelete = true;
 
         while (isDelete) {
-            System.out.println("Do you want to delete any colors? true/false");
+            System.out.println("Do you want to delete any colors? (true/false)");
             if (scanner.nextBoolean()) {
                 System.out.println("Enter a color you want to delete: ");
             } else {
@@ -58,6 +59,7 @@ public class ColorSet {
         //set after sorting
         TreeSet<String> colorTreeSet = new TreeSet<>(colorSet);
         System.out.println("After sorting:" + colorTreeSet);
+
 
 
     }
