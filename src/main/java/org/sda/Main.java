@@ -2,8 +2,12 @@ package org.sda;
 
 import org.sda.model.Person;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +20,7 @@ public class Main {
 
         //Lambda expression - function interface
         //New way of writing a method: functional interface
-        Function<String, Integer>  getStringLen = s ->{
+        Function<String, Integer> getStringLen = s -> {
             int increment = 10;
             s.length(); //first string is input, second is return to integer
             return s.length() + increment;
@@ -26,7 +30,7 @@ public class Main {
         //apply passes the value to string
 
         //Method reference
-        Predicate<Person> personTest2 = Person:: isAdult; //class name :: method name
+        Predicate<Person> personTest2 = Person::isAdult; //class name :: method name
         System.out.println(personTest2.test(person));
 
         //Lambda expression - supplier, consumer
@@ -45,8 +49,108 @@ public class Main {
         UnaryOperator<Integer> toSquare = i -> i * i;
         System.out.println(toSquare.apply(4)); //apply() should always be called
 
+        //OPTIONALS
+        //it's a class, not an interface
+        //it's a wrapper that can used if we are not sure if a value is present
+        //best way to explain - candy wrapper
+        //it can be filled with values and it may not be
+        Person person3 = new Person("Tony", "Chaplan", 56);
+        Optional<Person> optionalPerson = Optional.of(person3);
+
+
+        if (optionalPerson.isEmpty()) {
+            System.out.println("Person cannot be printed");
+        } else {
+            System.out.println(optionalPerson.get().toString());
+        }
+
+        optionalPerson.ifPresent(System.out::println); //ut was lambda expression
+        System.out.println(getRandomPerson().toString());
+
+        //STREAMS
+        //can be used to perform operations on collections with usage of lambda expressions
+        //help you do the work faster, we don't need so many for-s and if-s and no new list
+        //Streams - collect, findFirst, findAny
+        // we use streams when we have a list
+        List<String> carList = List.of("BMW", "Skoda", "Toyota", "Audi", "Ford");
+        carList.get(0); //one way to get the value
+        carList.stream()
+                .findFirst()
+                .ifPresent(System.out::println); //using the streams to get the value
+        //findFirst() -> Optional<T>
+        carList.stream()
+                .findAny()
+                .ifPresent(System.out::println); //find random element of this array
+        //findAny() -> Optional<T>
+        //filter is used ti apply a condition to the list and filter the list
+        List<String> filteredCars = carList.stream()
+                .filter(s -> s.length() >= 5) //Filter returns Stream<T>
+                .collect(Collectors.toList()); //convert Stream<T> to List<T>
+
+        filteredCars.stream().forEach(System.out::println); //prints all the values
+        filteredCars.forEach(s -> {
+            String prefix = "Car: " + s;
+            System.out.println(prefix);
+        });
+
+        //Streams - filter and map
+        //map: used to apply an operation to all the elements in the list(does not filter)
+
+        List<Integer> carLength = carList.stream()
+                .map(String::length)
+                .collect(Collectors.toList());
+        carLength.forEach(System.out::println);
+        System.out.println(carLength.size());
+
+        //AnyMatch, allMatch
+
+        //allMatch us used to check all the elements in the List matching a given condition
+        boolean isAllCarsGreaterThanFive = carList.stream()
+                .allMatch(s -> s.length() >= 5);
+        System.out.println(isAllCarsGreaterThanFive);
+
+        //anyMatch
+        //used to check if at least one element in the list matches the given condition
+        boolean isAnyCarStartingWithB = carList.stream()
+                .anyMatch(s -> s.startsWith("B"));
+        System.out.println(isAnyCarStartingWithB);
+        //startsWith is case-sensitive
+
+        //Streams - reduce method - puts everything in single line
+        //initial value is empty string
+        //used to reduce the list to string or other type
+        String cars = carList.stream()
+                .reduce("", ((s, s2) -> (s.equals("") ? "" : s + ", ") + s2 ));
+        System.out.println(cars);
+
+        //Streams - forEach, sorted
+        //forEach - see the examples before
+        //sorted - it will sort the list in the ascending order
+
+        carList.stream()
+                .sorted() //alphabetical order by default
+                .forEach(System.out::println);
+
+        carList.stream() //descending order sorting
+                .sorted((car1, car2) -> car2.compareTo(car1))
+                .forEach(System.out::println);
+
+        carList.stream() //different way of printing reverse order
+                .sorted(Comparator.reverseOrder())
+                .forEach(System.out::println);
+
 
 
 
     }
+
+    //orElse example for OPTIONAL
+    private static Person getRandomPerson() {
+        // Optional<Person> optionalPerson = Optional.empty();
+        Optional<Person> optionalPerson = Optional.of(new Person("Captain", "Estonia", 34));
+        Person person2 = new Person("Jim", "Carrey", 56); //Backup substitute
+        return optionalPerson.orElse(person2);
+    }
+
+
 }
