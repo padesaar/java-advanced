@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         //Lambda expression
-        Person person = new Person("Jim", "Carrey", 45);
+        Person person = new Person("Jim", "Carrey", "jimmy", 45);
         Predicate<Person> personTest = test -> test.getAge() > 20; //substitutes the condition we had in AdultTestPerson /lambda expression
         System.out.println(personTest.test(person));
 
@@ -54,7 +54,7 @@ public class Main {
         //it's a wrapper that can used if we are not sure if a value is present
         //best way to explain - candy wrapper
         //it can be filled with values and it may not be
-        Person person3 = new Person("Tony", "Chaplan", 56);
+        Person person3 = new Person("Tony", "Chaplan", "stark", 56);
         Optional<Person> optionalPerson = Optional.of(person3);
 
 
@@ -141,14 +141,34 @@ public class Main {
 
 
 
+        //NESTED CLASSES
+        //non-static inner type is bound to object of outer type
+
+        Person person4 = new Person("Jhonny", "Depp", "jhonny", 50);
+        System.out.println(person4.getUsername()); //outer class - Person
+        //inner class
+        Person.Employee employee = person4.new Employee(); //outer class . inner class
+        employee.username();
+        System.out.println(person4.getUsername());
+
+        //static nested class
+        //inner class is not bound to the outer class - it can not get the value of outer class
+        Person person5 = new Person("Dean", "Winchester", "winchester666", 34);
+        System.out.println(person5.getUsername());
+
+        Person.Customer customer = new Person.Customer(); //difference in object instantiation
+        customer.username(person5);
+        System.out.println(person5.getUsername());
+
+
 
     }
 
     //orElse example for OPTIONAL
     private static Person getRandomPerson() {
         // Optional<Person> optionalPerson = Optional.empty();
-        Optional<Person> optionalPerson = Optional.of(new Person("Captain", "Estonia", 34));
-        Person person2 = new Person("Jim", "Carrey", 56); //Backup substitute
+        Optional<Person> optionalPerson = Optional.of(new Person("Captain", "Estonia", "cappy", 34));
+        Person person2 = new Person("Jim", "Carrey", "carry", 56); //Backup substitute
         return optionalPerson.orElse(person2);
     }
 
