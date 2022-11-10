@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
+
 import static java.lang.System.in;
 
 public class Main {
@@ -79,6 +80,7 @@ public class Main {
         animalList.add("Bear");
         animalList.add("Monkey");
         animalList.add("Panda");
+
 
         System.out.println(animalList.get(1)); //print tiger
         animalList.remove(1); //tiger will be deleted

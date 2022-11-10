@@ -20,4 +20,5 @@ public class Fruit implements Serializable { //this class can be serialized and 
     private BigDecimal price; //same as float and double, but it has more precision on decimal points
 
 
+
 }
