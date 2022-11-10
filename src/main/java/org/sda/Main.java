@@ -1,5 +1,10 @@
 package org.sda;
 
+import jdk.jshell.spi.ExecutionControl;
+import org.sda.concurrency.StopWatchRunnableImpl;
+import org.sda.concurrency.StopWatchThread;
+import org.sda.concurrency.synchronization.ShoppingCart;
+import org.sda.concurrency.synchronization.ShoppingCartThread;
 import org.sda.model.Person;
 
 import java.util.Comparator;
@@ -10,7 +15,7 @@ import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //Lambda expression
         Person person = new Person("Jim", "Carrey", "jimmy", 45);
@@ -160,7 +165,41 @@ public class Main {
         customer.username(person5);
         System.out.println(person5.getUsername());
 
+        //CONCURRENCY in Java
+        //multiple jobs running in the same time
+        //each operation in java is called a thread
+        //every application has at least one thread
+        //main method - is main thread
+        //Thread.sleep(5000) mean 5000 milliseconds, it will wait for 5 seconds
 
+        System.out.println("Main is running after nested classes....");
+        Thread.sleep(5000);
+        System.out.println("Thread test ended!");
+
+        //extends thread
+        StopWatchThread stopWatchThread = new StopWatchThread("SW1");
+        StopWatchThread stopWatchThread2 = new StopWatchThread("SW2");
+        stopWatchThread.start(); //starting the stopWatchThread
+        stopWatchThread2.start();
+        System.out.println("Main thread starts running...");
+        Thread.sleep(5000); //this will make main matter sleep
+        System.out.println("Main thread is still running..");
+        Thread.sleep(3000); //also main matter
+        System.out.println("Main thread end running!");
+
+        //implementing a runnable interface
+        System.out.println("Runnable stopwatch started...");
+        Thread stopWatchRunnableThread = new Thread(new StopWatchRunnableImpl());
+        stopWatchRunnableThread.start();
+
+        Thread.sleep(10000);
+        //synchronization
+        ShoppingCart shoppingCart = new ShoppingCart(200); //maximum limit of products in the cart
+        ShoppingCartThread shoppingCartThread1 = new ShoppingCartThread(shoppingCart);
+        ShoppingCartThread shoppingCartThread2 = new ShoppingCartThread(shoppingCart);
+        shoppingCartThread1.start();
+        shoppingCartThread2.start();
+        System.out.println("Number of products:" + shoppingCart.getNumberOfProducts());
 
     }
 
