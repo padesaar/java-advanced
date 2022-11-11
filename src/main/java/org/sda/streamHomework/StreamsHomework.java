@@ -54,12 +54,12 @@ public class StreamsHomework {
         // names list sorted backwards
         namesList.stream()
                 .sorted(Comparator.reverseOrder())
-                .forEach(System.out::println);
+                .forEach (s-> System.out.println(s));
 
         // number list sorted backwards
         numberList.stream()
                 .sorted(Comparator.reverseOrder())
-                .forEach(System.out::println);
+                .forEach (s-> System.out.println(s));
 
 
     }
