@@ -62,5 +62,6 @@ public class StreamsHomework {
                 .forEach (s-> System.out.println(s));
 
 
+
     }
 }

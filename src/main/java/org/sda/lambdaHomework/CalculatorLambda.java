@@ -24,6 +24,7 @@ public class CalculatorLambda {
     interface Calculator {
         int calculatorCal(int a, int b);
 
+
     }
 
     public int calculate(int a, int b, Calculator calculator) {
@@ -87,6 +88,7 @@ public class CalculatorLambda {
         // list after sorting
 
         System.out.println(inputAnimals.stream().sorted(String::compareToIgnoreCase).toList());
+
 
     }
 }
