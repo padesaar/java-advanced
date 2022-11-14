@@ -1,16 +1,11 @@
 package org.sda.generics.homework;
 
-import org.sda.generics.Fruit;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Scanner;
 
 
 /**
@@ -31,49 +26,57 @@ public class LoremIpsum {
 
 
         //Reading a file and Counting words
-        String[] words = null;
-        int wordCount = 0;
-        FileReader fileReader = new FileReader(absoluteFile);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String string;
 
-        while((string= bufferedReader.readLine()) !=null){
-            words=string.split( " ");
-            wordCount = wordCount + words.length;
+        try (Scanner scanner = new Scanner(new FileInputStream(absoluteFile))) {
+            int counter = 0;
+            while (scanner.hasNext()) {
+                scanner.next();
+                counter++;
+            }
+            System.out.println("The are " + counter + " in the document");
         }
 
-        System.out.println("There are " + wordCount + " words in the file.");
-
         //Count special signs (like comma, dot, spaces)
+
+        Scanner document = new Scanner(new File("C:\\Users\\37253\\java-advanced\\src\\main\\resources\\loremIpsum.txt"));
+       // StandardCharsets.US_ASCII
+
+        List<String> specialChar = Files.readAllLines(absoluteFile.toPath(), StandardCharsets.US_ASCII);
+        List<String> specialCharASCII = new ArrayList<>();
+        specialCharASCII.add(32, "space");
+        specialCharASCII.add(44, "comma");
+        specialCharASCII.add(45, "dot");
+
+        while (document.hasNext()) {
+
+
+
+        }
 
 
         //Select one word and print it's number of occurences
 
-        FileReader fileReader2 = new FileReader(absoluteFile);
-       // fileReader2 =
-       // String word = "luctus";
-       // System.out.println(countOccurrences(str, word));
-    }
+        String word = "luctus";
+        int wordOccurrence = 0;
+        int totalCount = 0;
 
+        File file = new File("C:\\Users\\37253\\java-advanced\\src\\main\\resources\\loremIpsum.txt");
 
+        Scanner scanner = new Scanner(file);
 
-    static int countOccurrences(String str, String word)
-    {
-        // split the string by spaces in a
-        String a[] = str.split(" ");
-
-        // search for pattern in a
-        int count = 0;
-        for (int i = 0; i < a.length; i++)
-        {
-            // if match found increase count
-            if (word.equals(a[i]))
-                count++;
+        while (scanner.hasNext()) {
+            totalCount++;
+            if (scanner.next().equals(word)) {
+                wordOccurrence++;
+            }
         }
-
-        return count;
+        System.out.println("The word -luctus- appears in document:  " + wordOccurrence + " times.");
+    }
     }
 
 
 
-}
+
+
+
+
